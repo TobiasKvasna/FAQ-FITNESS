@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode and Music</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: red; /* Nastavenie farby textu na červenú v tmavom režime */
+        }
+
+        #toggle-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        #toggle-button:hover {
+            background-color: #45a049;
+        }
+
+        #settings-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: red; /* Nastavenie farby ikony nastavení na červenú */
+        }
+
+        #settings-button:hover {
+            color: #4CAF50;
+        }
+
+        #settings-panel {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        #music-toggle {
+            margin-top: 20px;
+        }
+
+        #music-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #music-button:hover {
+            background-color: #0b79d0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Button for switching mode -->
+    <button id="toggle-button">Switch to Dark Mode</button>
+
+    <!-- Settings button (gear icon) -->
+    <button id="settings-button">&#9881;</button>
+
+    <!-- Settings panel -->
+    <div id="settings-panel">
+        <label for="music-toggle">Music: </label>
+        <input type="checkbox" id="music-toggle" checked>
+        <label for="music-toggle">Turn Music On/Off</label>
+    </div>
+
+    <!-- Music file -->
+    <audio id="music" loop>
+        <source src="drunk-on-funk-273910.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get buttons and elements
+            const toggleButton = document.getElementById("toggle-button");
+            const body = document.body;
+            const settingsButton = document.getElementById("settings-button");
+            const settingsPanel = document.getElementById("settings-panel");
+            const musicToggle = document.getElementById("music-toggle");
+            const music = document.getElementById("music");
+
+            // Toggle dark/light mode
+            toggleButton.addEventListener("click", () => {
+                body.classList.toggle("dark-mode");
+
+                if (body.classList.contains("dark-mode")) {
+                    toggleButton.textContent = "Switch to Light Mode";
+                } else {
+                    toggleButton.textContent = "Switch to Dark Mode";
+                }
+            });
+
+            // Open/close settings panel
+            settingsButton.addEventListener("click", () => {
+                settingsPanel.style.display = settingsPanel.style.display === "block" ? "none" : "block";
+            });
+
+            // Toggle music on/off with checkbox
+            musicToggle.addEventListener("change", () => {
+                if (musicToggle.checked) {
+                    music.play();
+                } else {
+                    music.pause();
+                }
+            });
+
+            // Play/pause music with button
+            const musicButton = document.getElementById("music-button");
+            musicButton.addEventListener("click", () => {
+                if (music.paused) {
+                    music.play();
+                    musicButton.textContent = "Pause Music";
+                } else {
+                    music.pause();
+                    musicButton.textContent = "Play Music";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+<div style="text-align: center; color: red; font-family: Arial, sans-serif;">
+    <h1>FAQ</h1>
+
+    <div style="margin-bottom: 20px;">
+        <h2>What will I get when I buy a course?</h2>
+        <button style="font-size: 18px; color: red; background-color: transparent; border: none;">&#x2193;</button>
+        <p style="display: none;">You will get everything we can do! You will get 2 courses: one video course and one short PDF course. It may be short, but it will help! We are still going to work on it!</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <h2>Is it even worth it?</h2>
+        <button style="font-size: 18px; color: red; background-color: transparent; border: none;">&#x2193;</button>
+        <p style="display: none;">Yes, it's really worth it! All it costs is 5€, and you will get all this valuable information that can change your life if you try!</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <h2>What if I don’t have any money?</h2>
+        <button style="font-size: 18px; color: red; background-color: transparent; border: none;">&#x2193;</button>
+        <p style="display: none;">Don't worry! You can join our Discord server and watch our YouTube videos! There’s a lot of valuable information there!</p>
+    </div>
+</div>
+
+<script>
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
